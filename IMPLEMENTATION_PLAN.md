@@ -12,7 +12,7 @@ Step 2: Database
 Create collections
 Add sample data
 Step 3: Core UI
-Landing page
+Landing pageVRent
 Vehicle listing page
 Vehicle detail page
 Step 4: Booking Flow
