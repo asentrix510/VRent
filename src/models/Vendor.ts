@@ -1,5 +1,6 @@
 export interface Vendor {
   id?: string;
+  auth_uid?: string;
   name: string;
   phone: string;
   location: string;
