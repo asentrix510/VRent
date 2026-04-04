@@ -12,9 +12,7 @@ View Details
    ↓
 Click "Request Booking"
    ↓
-Fill Form
-   ↓
-Submit
+Notification to the Vendor
    ↓
 Confirmation Screen
    ↓
@@ -22,6 +20,16 @@ Optional: Contact Vendor (Call/WhatsApp)
 2.2 Vendor Flow
 Login (or simple auth)
    ↓
+Set Availability
+   ↓
+Save
+   ↓
+Notification from user
+   ↓
+Confirmation Screen whether available or not
+   ↓
+Optional: Contact User (Call/WhatsApp)
+2.3 Admin Flow
 Dashboard
    ↓
 Add Vehicle
@@ -30,10 +38,6 @@ Upload Images
    ↓
 Set Price
    ↓
-Set Availability
-   ↓
-Save
-2.3 Admin Flow
 Admin Login
    ↓
 View Vendors
