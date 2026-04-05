@@ -3,6 +3,27 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+<<<<<<< HEAD
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "firebase": "^10.14.1",
+    "firebase-admin": "^12.1.0",
+    "next": "^14.2.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.11",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.3",
+    "typescript": "^5.4.5"
+=======
     "dev": "next dev --port 3001",
     "kill-dev": "powershell -Command \"$proc = (Get-NetTCPConnection -LocalPort 3001 -ErrorAction SilentlyContinue).OwningProcess | Select-Object -First 1; if ($proc) { taskkill /PID $proc /F }\"",
     "build": "next build",
@@ -43,5 +64,6 @@
     "eslint-config-next": "16.2.2",
     "tailwindcss": "^4",
     "typescript": "^5"
+>>>>>>> main
   }
 }

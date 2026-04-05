@@ -2,6 +2,7 @@
 5.1 Vendors Collection
 vendors {
   id: string
+  auth_uid: string // corresponds to Firebase Auth UI / simple login
   name: string
   phone: string
   location: string
@@ -23,6 +24,7 @@ vehicles {
 booking_requests {
   id: string
   vehicle_id: string
+  vendor_id: string // Need it to query "Notification from user" for a specific vendor
   user_name: string
   user_phone: string
   duration: string
