@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Search } from 'lucide-react';
 
 export const Navbar = () => {
   return (
@@ -10,6 +9,7 @@ export const Navbar = () => {
           VRent
         </Link>
 
+        {/* Desktop nav links */}
         <div className="hidden md:flex items-center space-x-8">
           <Link href="/vehicles" className="text-sm font-medium text-[#64748b] hover:text-[#0f172a] transition-colors">
             Browse
@@ -19,13 +19,16 @@ export const Navbar = () => {
           </Link>
         </div>
 
-        <div className="flex items-center space-x-4">
+        {/* Desktop CTA only */}
+        <div className="hidden md:flex items-center space-x-4">
           <Link href="/vehicles">
             <Button className="rounded-2xl bg-[#0f172a] text-white hover:bg-[#0f172a]/90 h-10 px-6">
               Explore
             </Button>
           </Link>
         </div>
+
+        {/* Mobile: just the brand, bottom nav handles navigation */}
       </div>
     </nav>
   );

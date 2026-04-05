@@ -6,20 +6,20 @@ import { VehicleCard } from '@/components/vehicle/VehicleCard';
 import { FiltersSidebar } from '@/components/vehicle/FiltersSidebar';
 import { Button } from '@/components/ui/button';
 import { SearchBar } from '@/components/ui/search-bar';
-import { Filter, SlidersHorizontal, PackageOpen } from 'lucide-react';
-import { 
-  Sheet, 
-  SheetContent, 
-  SheetHeader, 
-  SheetTitle, 
-  SheetTrigger 
+import { SlidersHorizontal, PackageOpen } from 'lucide-react';
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger
 } from '@/components/ui/sheet';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function VehiclesPage() {
-  const { 
-    searchQuery, 
-    priceRange, 
+  const {
+    searchQuery,
+    priceRange,
     selectedType,
     isMobileFilterOpen,
     setIsMobileFilterOpen
@@ -33,50 +33,81 @@ export default function VehiclesPage() {
   });
 
   return (
-    <div className="max-w-6xl mx-auto px-4 md:px-6 py-12">
-      <div className="mb-12 space-y-6">
-        <h1 className="text-4xl font-bold tracking-tight text-[#0f172a]">
+    <div className="max-w-6xl mx-auto px-4 md:px-6 py-6 md:py-12">
+      {/* Header */}
+      <div className="mb-6 md:mb-10 space-y-4">
+        <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-[#0f172a]">
           Find your vehicle
         </h1>
-        <div className="flex flex-col md:flex-row gap-4 items-center">
-          <div className="flex-1 w-full">
+
+        {/* Search + Filter row */}
+        <div className="flex gap-3 items-center">
+          <div className="flex-1">
             <SearchBar />
           </div>
-          
+
+          {/* Mobile filter trigger */}
           <Sheet open={isMobileFilterOpen} onOpenChange={setIsMobileFilterOpen}>
-            <SheetTrigger 
+            <SheetTrigger
               render={
-                <Button size="lg" variant="outline" className="md:hidden w-full h-14 rounded-2xl border-[#e5e7eb] flex items-center gap-2">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="md:hidden h-12 w-12 rounded-2xl border-[#e5e7eb] shrink-0 flex items-center justify-center"
+                >
                   <SlidersHorizontal className="w-5 h-5" />
-                  Filters
                 </Button>
               }
             />
-            <SheetContent side="bottom" className="h-[80vh] rounded-t-[2rem] p-0 overflow-hidden border-t-0">
-              <SheetHeader className="p-6 border-b border-[#f1f5f9]">
-                <SheetTitle className="text-xl font-bold">Filters</SheetTitle>
+            <SheetContent side="bottom" className="h-[82vh] rounded-t-[2rem] p-0 overflow-hidden border-t-0">
+              <SheetHeader className="p-5 border-b border-[#f1f5f9]">
+                <SheetTitle className="text-lg font-bold">Filters</SheetTitle>
               </SheetHeader>
-              <div className="p-2 overflow-y-auto h-full pb-20">
+              <div className="p-4 overflow-y-auto h-full pb-28">
                 <FiltersSidebar />
               </div>
             </SheetContent>
           </Sheet>
         </div>
+
+        {/* Active filter chips */}
+        {(selectedType || searchQuery) && (
+          <div className="flex flex-wrap gap-2">
+            {selectedType && (
+              <span className="inline-flex items-center gap-1.5 bg-[#6366f1]/10 text-[#6366f1] text-xs font-semibold px-3 py-1.5 rounded-full">
+                {selectedType}
+                <button
+                  onClick={() => useUIStore.getState().setSelectedType(null)}
+                  className="ml-0.5 opacity-70 hover:opacity-100 text-sm leading-none"
+                >×</button>
+              </span>
+            )}
+            {searchQuery && (
+              <span className="inline-flex items-center gap-1.5 bg-[#0f172a]/10 text-[#0f172a] text-xs font-semibold px-3 py-1.5 rounded-full">
+                "{searchQuery}"
+                <button
+                  onClick={() => useUIStore.getState().setSearchQuery('')}
+                  className="ml-0.5 opacity-70 hover:opacity-100 text-sm leading-none"
+                >×</button>
+              </span>
+            )}
+          </div>
+        )}
       </div>
 
-      <div className="flex gap-10">
+      <div className="flex gap-8">
         {/* Desktop Sidebar */}
         <aside className="hidden md:block w-72 shrink-0 h-fit sticky top-24">
           <FiltersSidebar />
         </aside>
 
         {/* Main Grid */}
-        <div className="flex-1">
+        <div className="flex-1 min-w-0">
           <AnimatePresence mode="popLayout">
             {filteredVehicles.length > 0 ? (
-              <motion.div 
+              <motion.div
                 layout
-                className="grid grid-cols-1 md:grid-cols-2 gap-8"
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 md:gap-6"
               >
                 {filteredVehicles.map((vehicle) => (
                   <motion.div
@@ -84,28 +115,28 @@ export default function VehiclesPage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.25 }}
                   >
                     <VehicleCard vehicle={vehicle} />
                   </motion.div>
                 ))}
               </motion.div>
             ) : (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="flex flex-col items-center justify-center py-24 text-center"
+                className="flex flex-col items-center justify-center py-20 text-center"
               >
-                <div className="w-20 h-20 rounded-3xl bg-slate-50 flex items-center justify-center text-slate-300 mb-6">
-                  <PackageOpen className="w-10 h-10" />
+                <div className="w-16 h-16 rounded-3xl bg-slate-50 flex items-center justify-center text-slate-300 mb-5">
+                  <PackageOpen className="w-8 h-8" />
                 </div>
-                <h3 className="text-xl font-bold text-[#0f172a] mb-2">No vehicles found</h3>
-                <p className="text-[#64748b] max-w-sm">
-                  We couldn't find anything matching your current filters. Try adjusting your search or resetting filters.
+                <h3 className="text-lg font-bold text-[#0f172a] mb-2">No vehicles found</h3>
+                <p className="text-[#64748b] text-sm max-w-xs">
+                  Try adjusting your search or filters to find what you&apos;re looking for.
                 </p>
-                <Button 
-                  variant="link" 
-                  className="mt-4 text-[#6366f1] underline"
+                <Button
+                  variant="link"
+                  className="mt-4 text-[#6366f1]"
                   onClick={() => useUIStore.getState().resetFilters()}
                 >
                   Reset all filters

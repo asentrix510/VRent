@@ -13,37 +13,37 @@ export default function VendorPage() {
   const vendorVehicles = mockVehicles.slice(0, 3); // Mocking as vendor's own vehicles
 
   return (
-    <div className="max-w-6xl mx-auto px-4 md:px-6 py-12">
-      <div className="mb-16 space-y-6">
-        <h1 className="text-4xl md:text-5xl font-black tracking-tight text-[#0f172a]">
+    <div className="max-w-6xl mx-auto px-4 md:px-6 py-6 md:py-12">
+      <div className="mb-8 md:mb-16 space-y-3 md:space-y-6">
+        <h1 className="text-3xl md:text-5xl font-black tracking-tight text-[#0f172a]">
           Vendor Dashboard
         </h1>
-        <p className="text-xl text-[#64748b] max-w-2xl">
+        <p className="text-base md:text-xl text-[#64748b] max-w-2xl">
           Manage your fleet, track performance, and add new listings in one place.
         </p>
 
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+        {/* Stats Grid — 2 cols on mobile, 4 on desktop */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mt-4 md:mt-12">
           {[
             { label: 'Total Vehicles', value: '12', icon: Car, color: 'text-indigo-600', bg: 'bg-indigo-50' },
             { label: 'Active Rentals', value: '8', icon: Calendar, color: 'text-emerald-600', bg: 'bg-emerald-50' },
-            { label: 'Pending Requests', value: '3', icon: LayoutDashboard, color: 'text-amber-600', bg: 'bg-amber-50' },
-            { label: 'Total Earnings', value: '$4,280', icon: DollarSign, color: 'text-slate-900', bg: 'bg-slate-100' },
+            { label: 'Pending', value: '3', icon: LayoutDashboard, color: 'text-amber-600', bg: 'bg-amber-50' },
+            { label: 'Earnings', value: '$4,280', icon: DollarSign, color: 'text-slate-900', bg: 'bg-slate-100' },
           ].map((stat, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
+              transition={{ delay: i * 0.08 }}
             >
-              <Card className="border-[#e5e7eb] rounded-3xl shadow-sm hover:shadow-md transition-shadow h-32 flex flex-col justify-center px-6">
-                <div className="flex items-center gap-4">
-                  <div className={`w-12 h-12 rounded-2xl ${stat.bg} ${stat.color} flex items-center justify-center shrink-0`}>
-                    <stat.icon className="w-6 h-6" />
+              <Card className="border-[#e5e7eb] rounded-2xl md:rounded-3xl shadow-sm hover:shadow-md transition-shadow py-4 px-4 md:h-32 md:flex md:flex-col md:justify-center md:px-6">
+                <div className="flex items-center gap-3">
+                  <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl ${stat.bg} ${stat.color} flex items-center justify-center shrink-0`}>
+                    <stat.icon className="w-5 h-5 md:w-6 md:h-6" />
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-[#64748b]">{stat.label}</p>
-                    <p className="text-2xl font-black text-[#0f172a]">{stat.value}</p>
+                    <p className="text-xs md:text-sm font-bold text-[#64748b]">{stat.label}</p>
+                    <p className="text-xl md:text-2xl font-black text-[#0f172a]">{stat.value}</p>
                   </div>
                 </div>
               </Card>
